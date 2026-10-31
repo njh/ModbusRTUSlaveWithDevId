@@ -1,8 +1,13 @@
-ModbusRTUSlave	KEYWORD1		
+ModbusRTUSlaveWithDevId	KEYWORD1		
 configureCoils	KEYWORD2		
 configureDiscreteInputs	KEYWORD2		
 configureHoldingRegisters	KEYWORD2		
 configureInputRegisters	KEYWORD2		
+configureDeviceIdentification	KEYWORD2		
+setVendorUrl	KEYWORD2		
+setProductName	KEYWORD2		
+setModelName	KEYWORD2		
+setUserApplicationName	KEYWORD2		
 setResponseDelay	KEYWORD2		
 begin	KEYWORD2		
 poll	KEYWORD2		
