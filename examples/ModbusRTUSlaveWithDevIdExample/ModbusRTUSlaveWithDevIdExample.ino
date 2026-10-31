@@ -1,17 +1,16 @@
 /*
-  ModbusRTUSlaveExample
+  ModbusRTUSlaveWithDevIdExample
 
-  This example demonstrates how to setup and use the ModbusRTUSlave library (https://github.com/CMB27/ModbusRTUSlave).
-  See README.md (https://github.com/CMB27/ModbusRTUMaster/blob/main/examples/ModbusRTUSlaveExample/README.md) for hardware setup details.
-  
+  This example demonstrates how to setup and use the ModbusRTUSlaveWithDevId class, which adds Read Device Identification
+  (function code 43 / MEI type 14) to the ModbusRTUSlave library (https://github.com/CMB27/ModbusRTUSlave).
+  See README.md in this folder for hardware setup details.
+
   Created: 2023-07-22
-  By: C. M. Bulliner
-  Last Modified: 2025-01-03
   By: C. M. Bulliner
   
 */
 
-#include <ModbusRTUSlave.h>
+#include <ModbusRTUSlaveWithDevId.h>
 
 #if defined(__AVR_ATmega328P__) || defined(__AVR_ATmega168__) || defined(__AVR_ATmega2560__) || defined(__AVR_ATmega1280__) || defined(ARDUINO_SAM_DUE)
   // The ATmega328P and ATmega168 are used in the Ardunino UNO and similar boards.
@@ -47,7 +46,7 @@
 #endif
 const int16_t knobPins[2] = {A0, A1};
 
-ModbusRTUSlave modbus(MODBUS_SERIAL, dePin);
+ModbusRTUSlaveWithDevId modbus(MODBUS_SERIAL, dePin);
 
 const uint8_t numCoils = 2;
 const uint8_t numDiscreteInputs = 2;
@@ -79,6 +78,10 @@ void setup() {
   modbus.configureDiscreteInputs(discreteInputs, numDiscreteInputs);
   modbus.configureHoldingRegisters(holdingRegisters, numHoldingRegisters);
   modbus.configureInputRegisters(inputRegisters, numInputRegisters);
+
+  // These strings are kept in flash, and are returned by Read Device Identification.
+  modbus.configureDeviceIdentification(F("Example vendor"), F("EX-1"), F("1.0"));
+  modbus.setProductName(F("ModbusRTUSlaveWithDevId example"));
 
   MODBUS_SERIAL.begin(MODBUS_BAUD, MODBUS_CONFIG);
   modbus.begin(MODBUS_UNIT_ID, MODBUS_BAUD, MODBUS_CONFIG);

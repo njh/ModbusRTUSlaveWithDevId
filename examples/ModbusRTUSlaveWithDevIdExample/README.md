@@ -1,6 +1,6 @@
-# ModbusRTUSlaveExample
+# ModbusRTUSlaveWithDevIdExample
  
-This example demonstrates how to setup and use the [ModbusRTUSlave](https://github.com/CMB27/ModbusRTUSlave) library.
+This example demonstrates how to setup and use the `ModbusRTUSlaveWithDevId` class, which adds Read Device Identification to the [ModbusRTUSlave](https://github.com/CMB27/ModbusRTUSlave) library.
 
 > [!IMPORTANT]  
 > This is a communications library, so in order to test it, you will need something to communicate with.  
